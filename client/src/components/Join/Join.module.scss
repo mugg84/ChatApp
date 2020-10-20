@@ -1,0 +1,16 @@
+@import '../../style/global';
+@import '../../style/variables';
+
+.main {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
