@@ -1,17 +1,27 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
+
 import { appContext } from '../../context/appContext';
 
 import Join from '../Join';
+import Chat from '../../Chat/Chat';
 
 const value = { name: '', room: '', setRoom: jest.fn(), setName: jest.fn() };
 
+const history = createMemoryHistory();
+const redirectUrl = '/chat';
+const data = { status: 'closed' };
+
 let wrapper = (
   <appContext.Provider value={value}>
-    <MemoryRouter>
-      <Join />
-    </MemoryRouter>
+    <Router history={history}>
+      <Join
+        ComponentWithRedirection={() => <Chat data={data} />}
+        RedirectUrl={redirectUrl}
+      />
+    </Router>
   </appContext.Provider>
 );
 
@@ -42,23 +52,23 @@ describe('<Join />', () => {
     expect(roomInput.value).toBe('foo');
   });
 
-  /*  test('3- redirected to <Chat /> when both input are not empty and btn clicked', () => {
-    const { getByTestId } = render(wrapper);
+  test('3- redirected to <Chat /> when both input are not empty and btn clicked', () => {
+    const { getByTestId} = render(wrapper);
 
-    join = getByTestId('submit');
-    name = getByTestId('name');
-    room = getByTestId('room');
+    let join = getByTestId('submit');
+    let nameInput = getByTestId('name');
+    let roomInput = getByTestId('room');
 
-    fireEvent.change(name, {
+    fireEvent.change(nameInput, {
       target: { value: 'foo' },
     });
 
-    fireEvent.change(room, {
+    fireEvent.change(roomInput, {
       target: { value: 'foo' },
     });
 
     fireEvent.click(join);
 
-    expect(document.body.textContent).toBe('Chat');
-  });  */
+    expect(wrapper.innerHTML).toEqual(expect.stringContaining(redirectUrl));
+  });
 });
