@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import io from 'socket.io-client';
-
 import AppContext from '../context/appContext';
 
-import './Chat.module.scss';
+import styles from './Chat.module.scss';
+
+import InfoBar from '../InfoBar/InfoBar';
 
 let socket;
 
@@ -31,14 +32,29 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('message', (message) => {
-      setMessages(...messages, message);
+      setMessages([...messages, message]);
     });
   }, [messages]);
 
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    if (message) {
+      socket.emit('sendMessage', message, () => setMessage(''));
+    }
+  };
+
+  console.log(message, messages);
+
   return (
-    <div>
-      <h1>Chat</h1>
-    </div>
+    <section className={styles.chat}>
+      {/*  <input
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
+    />; */}
+      <InfoBar />
+    </section>
   );
 };
 

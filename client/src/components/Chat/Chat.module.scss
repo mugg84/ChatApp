@@ -1,0 +1,11 @@
+@import '../../style/global';
+@import '../../style/variables';
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  width: 60vh;
+  background-color: $color-clear;
+}

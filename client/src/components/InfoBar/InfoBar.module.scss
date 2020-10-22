@@ -1,0 +1,26 @@
+@import '../../style/global';
+@import '../../style/variables';
+
+.infoBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: $color-clear;
+  background-color: $color-primary;
+
+  &__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1vh;
+
+    img {
+      padding-right: 1vh;
+    }
+  }
+
+  &__right {
+    padding-right: 1vh;
+  }
+}

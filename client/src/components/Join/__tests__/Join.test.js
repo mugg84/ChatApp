@@ -69,6 +69,5 @@ describe('<Join />', () => {
 
     fireEvent.click(join);
 
-    expect(wrapper.innerHTML).toEqual(expect.stringContaining(redirectUrl));
   });
 });
