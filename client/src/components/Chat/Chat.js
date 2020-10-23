@@ -5,6 +5,8 @@ import AppContext from '../context/appContext';
 import styles from './Chat.module.scss';
 
 import InfoBar from '../InfoBar/InfoBar';
+import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
 
 let socket;
 
@@ -48,12 +50,13 @@ const Chat = () => {
 
   return (
     <section className={styles.chat}>
-      {/*  <input
-      value={message}
-      onChange={(e) => setMessage(e.target.value)}
-      onKeyPress={(e) => (e.key === 'Enter' ? sendMessage(e) : null)}
-    />; */}
       <InfoBar />
+      <Messages messages={messages} />
+      <Input
+        message={message}
+        setMessage={setMessage}
+        sendMessage={sendMessage}
+      />
     </section>
   );
 };
