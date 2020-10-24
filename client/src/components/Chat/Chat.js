@@ -36,7 +36,7 @@ const Chat = () => {
     socket.on('message', (message) => {
       setMessages([...messages, message]);
     });
-  }, [messages]);
+  }, [message]);
 
   const sendMessage = (e) => {
     e.preventDefault();

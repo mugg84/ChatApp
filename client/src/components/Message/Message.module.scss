@@ -1,0 +1,29 @@
+@import '../../style/global';
+@import '../../style/variables';
+
+.message {
+  &__client {
+    display: flex;
+    color: red;
+  }
+
+  &__other {
+    display: flex;
+    color: green;
+    text-align: end;
+  }
+}
+
+.client__text {
+  padding: 0 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 1rem;
+  background-color: greenyellow;
+}
+
+.other__text {
+  padding: 0 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 1rem;
+  background-color: indianred;
+}

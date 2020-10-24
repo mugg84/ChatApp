@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 import AppContext from '../context/appContext';
-
-import ScrollBar from '../ScrollBar/ScrollBar';
 import Message from '../Message/Message';
+
+import styles from './Messages.module.scss';
 
 const Messages = ({ messages }) => {
   const appContext = useContext(AppContext);
@@ -11,13 +12,13 @@ const Messages = ({ messages }) => {
   const { name } = appContext;
 
   return (
-    <ScrollBar>
+    <ScrollToBottom className={styles.container}>
       {messages.map((message, i) => (
         <div key={i}>
           <Message message={message} name={name} />
         </div>
       ))}
-    </ScrollBar>
+    </ScrollToBottom>
   );
 };
 
