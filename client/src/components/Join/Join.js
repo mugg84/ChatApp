@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import AppContext from '../context/appContext';
+import Alert from '../Alert/Alert';
 
 import styles from './Join.module.scss';
 
 const Join = () => {
   const appContext = useContext(AppContext);
 
-  const { name, room, setName, setRoom } = appContext;
+  const { name, room, setName, setRoom, setAlert } = appContext;
 
   const handleChange = (e) => {
     if (e.target.name === 'name') {
@@ -15,6 +17,17 @@ const Join = () => {
     } else if (e.target.name === 'room') {
       setRoom(e.target.value);
     }
+  };
+
+  const handleLink = (e) => {
+    if (!name || !room) {
+      e.preventDefault();
+      setAlert({ error: 'Please fill all the inputs' });
+    }
+  };
+
+  const onKeyPress = (e) => {
+    console.log('d');
   };
 
   return (
@@ -39,8 +52,13 @@ const Join = () => {
         />
       </form>
 
+      <div className={styles.alert}>
+        <Alert />
+      </div>
+
       <Link
-        onClick={(e) => (!name || !room ? e.preventDefault() : null)}
+        onKeyPress={onKeyPress}
+        onClick={handleLink}
         to={`/chat?name=${name}&room=${room}`}
       >
         <button

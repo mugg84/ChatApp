@@ -1,17 +1,6 @@
 @import './style/variables';
 @import './style/global';
 
-html {
-  font-size: 10px;
-}
-
-body {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  color: $color-primary;
-}
-
 .app {
   height: 100vh;
   display: flex;

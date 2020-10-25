@@ -6,15 +6,15 @@ import Chat from './components/Chat/Chat';
 
 import AppState from './components/context/AppState';
 
-import './App.scss';
+import styles from './App.module.scss';
 
 const App = () => (
   <AppState>
     <Router>
-      <section className="app">
+      <section className={styles.app}>
         <Switch>
           <Route path="/" exact component={Join} />
-          <Route path="/chat"  component={Chat} />
+          <Route path="/chat" component={Chat} />
         </Switch>
       </section>
     </Router>

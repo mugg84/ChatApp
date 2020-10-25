@@ -17,6 +17,12 @@ const AppState = (props) => {
     dispatch({ type: GET_ROOM, payload: room });
   };
 
+  const setAlert = (error) => {
+    dispatch({ type: SET_ALERT, payload: error });
+
+    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -25,6 +31,7 @@ const AppState = (props) => {
         alert: state.alert,
         setName,
         setRoom,
+        setAlert,
       }}
     >
       {props.children}
