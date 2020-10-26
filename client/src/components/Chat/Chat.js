@@ -19,7 +19,7 @@ const Chat = () => {
 
   const { name, setName, room, setAlert } = appContext;
 
-  const ENDPOINT = 'localhost:5000';
+  const ENDPOINT = 'https://react--chat-app-123.herokuapp.com/';
 
   useEffect(() => {
     socket = io(ENDPOINT);
