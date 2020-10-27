@@ -8,20 +8,17 @@ import { appContext } from '../../context/appContext';
 import Join from '../Join';
 import Chat from '../../Chat/Chat';
 
-const value = { name: '', room: '', setRoom: jest.fn(), setName: jest.fn() };
-
-const history = createMemoryHistory();
-const redirectUrl = '/chat';
-const data = { status: 'closed' };
+const value = {
+  name: '',
+  room: '',
+  setRoom: jest.fn(),
+  setName: jest.fn(),
+  setAlert: jest.fn(),
+};
 
 let wrapper = (
   <appContext.Provider value={value}>
-    <Router history={history}>
-      <Join
-        ComponentWithRedirection={() => <Chat data={data} />}
-        RedirectUrl={redirectUrl}
-      />
-    </Router>
+    <Router history={history}></Router>33
   </appContext.Provider>
 );
 
@@ -53,9 +50,9 @@ describe('<Join />', () => {
   });
 
   test('3- redirected to <Chat /> when both input are not empty and btn clicked', () => {
-    const { getByTestId} = render(wrapper);
+    const { getByTestId, getByText } = render(wrapper);
 
-    let join = getByTestId('submit');
+    let join = getByText('Sign In');
     let nameInput = getByTestId('name');
     let roomInput = getByTestId('room');
 
@@ -69,5 +66,7 @@ describe('<Join />', () => {
 
     fireEvent.click(join);
 
+    console.log(window.location.href);
+    expect(value.setAlert).toHaveBeenCalledTimes(1);
   });
 });

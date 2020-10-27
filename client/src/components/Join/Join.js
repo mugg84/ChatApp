@@ -61,13 +61,7 @@ const Join = () => {
         onClick={handleLink}
         to={`/chat?name=${name}&room=${room}`}
       >
-        <button
-          className={`${styles.btn} ${styles['btn--submit']}`}
-          type="submit"
-          data-testid="submit"
-        >
-          Sign In
-        </button>
+        Sign In
       </Link>
     </section>
   );
