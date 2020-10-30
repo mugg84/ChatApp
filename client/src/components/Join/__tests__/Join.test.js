@@ -6,7 +6,11 @@ import { Router } from 'react-router-dom';
 import { appContext } from '../../context/appContext';
 
 import Join from '../Join';
-import Chat from '../../Chat/Chat';
+
+jest.mock('../../Alert/Alert', () => ({
+  default: () => null,
+  __esModule: true,
+}));
 
 const value = {
   name: '',
@@ -16,9 +20,13 @@ const value = {
   setAlert: jest.fn(),
 };
 
+const history = createMemoryHistory();
+
 let wrapper = (
   <appContext.Provider value={value}>
-    <Router history={history}></Router>33
+    <Router history={history}>
+      <Join />
+    </Router>
   </appContext.Provider>
 );
 
@@ -57,16 +65,17 @@ describe('<Join />', () => {
     let roomInput = getByTestId('room');
 
     fireEvent.change(nameInput, {
-      target: { value: 'foo' },
+      target: { value: 'dddd' },
     });
 
     fireEvent.change(roomInput, {
-      target: { value: 'foo' },
+      target: { value: '' },
     });
 
     fireEvent.click(join);
 
-    console.log(window.location.href);
-    expect(value.setAlert).toHaveBeenCalledTimes(1);
+    console.log(wrapper);
+
+    expect(getByText('Fill')).toBeInTheDocument();
   });
 });

@@ -26,10 +26,6 @@ const Join = () => {
     }
   };
 
-  const onKeyPress = (e) => {
-    console.log('d');
-  };
-
   return (
     <section className={styles.main}>
       <h1 className={styles.main__title}>Join</h1>
@@ -56,11 +52,7 @@ const Join = () => {
         <Alert />
       </div>
 
-      <Link
-        onKeyPress={onKeyPress}
-        onClick={handleLink}
-        to={`/chat?name=${name}&room=${room}`}
-      >
+      <Link onClick={handleLink} to={`/chat?name=${name}&room=${room}`}>
         Sign In
       </Link>
     </section>
