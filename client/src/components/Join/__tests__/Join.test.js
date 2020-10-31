@@ -65,7 +65,7 @@ describe('<Join />', () => {
     let roomInput = getByTestId('room');
 
     fireEvent.change(nameInput, {
-      target: { value: 'dddd' },
+      target: { value: 'aaa' },
     });
 
     fireEvent.change(roomInput, {
